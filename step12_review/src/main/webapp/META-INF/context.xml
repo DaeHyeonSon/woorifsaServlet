@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<Context>
+	<!-- oracle db 설정 정보 -->
+	<Resource name="jdbc/myoracle" auth="Container"
+              type="javax.sql.DataSource" 
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+              username="scott" password="tiger" 
+              maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>
+              
+   	<!-- mysql db 설정 정보 -->
+   	<!-- maria db 설정 정보 -->
+   	<!-- db2 db 설정 정보 -->
+   	
+</Context>

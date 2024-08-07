@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 
+		첫 intro 파일
+		모든 게시글 보여주는 list 화면 실행을 메인으로 설정
+		client들은 list.jsp 파일을 url에 입력하지 못함
+		무조건 db로부터 select를 해야함
+		따라서 controller -> DAO -> DB -> DAO -> controller -> list.jsp
+		* 자동으로 이 로직 요청하게 js라는 언어로 controller에 모든 검색 실행하는 자동화 코드	
+	-->
+	
+	
+	<!-- 
+		index.html 실행시 자동으로 board에 매핑된 servlet을 실행하는 코드
+		자동 page 이동시키는 javascript 코드 
+	 -->
+	<script type="text/javascript">
+		location.href="board?command=list";	
+	</script>
+	
+</body>
+</html>
