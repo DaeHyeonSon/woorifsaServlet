@@ -122,25 +122,30 @@
 
             const form = document.forms.updateForm;
             const formData = new FormData(form);
+            
+            const params = new URLSearchParams(formData).toString();
+            
+            
             //formData.set("command", "update");
 
-            console.log("sendUpdatedForm() formData : ");
-            for (let pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
-            }
-            console.log("직렬화된 값:  ",JSON.stringify(formData));
+           // console.log("sendUpdatedForm() formData : ");
+            //for (let pair of formData.entries()) {
+            //    console.log(pair[0] + ': ' + pair[1]);
+            //}
+            
             const xhttp = new XMLHttpRequest();
-           	console.log()
+            console.log(params);
             xhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     console.log("sendUpdatedForm 응답 받았음 .. ");
                     //document.getElementById("oneRead").innerHTML = this.responseText;
                 }
             };
-          
+          	
+           
             xhttp.open("POST", "board?command=list", true);
-            xhttp.setRequestHeader("Content-Type", "application/json");
-            xhttp.send(JSON.stringify(formData));
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send(params);
         }
         
         function closeReadOne() {

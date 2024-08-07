@@ -1,16 +1,20 @@
 package controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
 
-import antlr.debug.InputBufferReporter;
 import controller.action.Action;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 //board?command=list
 @WebServlet("/board")
@@ -31,24 +35,24 @@ public class BoardController extends HttpServlet {
 		if(command == null) {
 			command = "list";   //모든 방명록 보기
 		}
-		StringBuilder sb = new StringBuilder();
 		
-		System.out.println("1");
-		BufferedReader reader = request.getReader();
-		String line;
-		while((line = reader.readLine()) != null) {
-			System.out.println("2");
-			sb.append(line);
+		
+		
+		String title = request.getParameter("title"); // 글 제목
+		String author = request.getParameter("author"); // 글 작성자
+		String email = request.getParameter("email"); // 글 작성자 전자메일
+		String content = request.getParameter("content");
+		String password = request.getParameter("password"); // 글 비밀번호
+		
+		if(title != null) {
+			System.out.println("title: " + title);
+			System.out.println("author: " + author);
+			System.out.println("email: " + email);
+			System.out.println("content: " + content);
+			System.out.println("password: " + password);
+			System.out.println();
 		}
-		System.out.println(sb.toString());
 		
-	    Enumeration<String> parameterNames = request.getParameterNames();
-	    while (parameterNames.hasMoreElements()) {
-	        String paramName = parameterNames.nextElement();
-	        String paramValue = request.getParameter(paramName);
-	        System.out.println(paramName + " : " + paramValue);
-	    }
-		System.out.println("3");
 
 		ActionFactory af = ActionFactory.getInstance();
 		Action action = af.getAction(command);  //list, view, updateForm, write, update
